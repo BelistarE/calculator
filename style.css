@@ -5,14 +5,18 @@
 h1{
     display: flex;
     justify-content: center;
+    margin-bottom: 60px;
+    padding: 10px;
+    background-color: #c3ddbb;
+    border-radius: 5px;
 }
 body, html {
     height: 100%;
-    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #3E3E42;
 }
 
 .frame {
@@ -21,8 +25,7 @@ body, html {
     align-items: center;
     height: 600px;
     width: 600px;
-    background-color: rgb(75, 75, 75);
-    border: 10px solid black;
+    background-color: #1E1E1E;
 }
 
 .leftElements{
@@ -51,17 +54,52 @@ body, html {
 
 button {
     flex: 1;
-    margin: 5px; /* Optional: Adjust margin between buttons */
+    margin: 2px; /* Optional: Adjust margin between buttons */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightblue; /* Added for better visibility */
-    border: 1px solid #ccc; /* Optional: Add border for better visibility */
+    background-color: #3E3E42; /* Added for better visibility */
     font-size: 24px; /* Optional: Adjust button font size */
     width: auto;
     cursor: pointer;
-    border-radius: 50px;
+    border-radius: 5px;
+    color: white;
+    font-family: "Rubik", sans-serif;
+    outline: none;
+    box-shadow: none;
+    border: 0;
 }
+
+#number:hover {
+    background-color: #313135; /* Corrected hover background color */
+}
+#number:active{
+    background-color: #242424;
+}
+
+#function:hover{
+    background-color: #3E3E42;
+}
+#function:active{
+    background-color: #313135;
+}
+.multiply, .divide, .add, .subtract, .dot{
+    background-color: #313135;
+    font-size: 30px;
+}
+.equals{
+    background-color: #c3ddbb;
+    color: #1E1E1E;
+    font-size: 30px;
+}
+.equals:hover{
+    background-color: #abc2a5;
+}
+.equals:active{
+    background-color:#9fb499 ;
+}
+
+
 
 .history{
     display: flex;
@@ -69,6 +107,7 @@ button {
     flex-direction: column;
     height: 100%;
     width: 25%;
+    color: white;
 
 }
 
