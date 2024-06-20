@@ -37,6 +37,12 @@ body, html {
 }
 .display{
     height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    margin-right: 30px;
+    
 }
 .numPad {
     display: flex;
@@ -44,6 +50,7 @@ body, html {
     height: 600px; /* Adjust as needed */
     width: auto; /* Adjust as needed */ 
     margin: 10px;
+    margin-top: 0;
 }
 
 .row {
@@ -116,4 +123,39 @@ h1, h3{
     font-optical-sizing: auto;
 }
 
+.prev, .current{
+    font-family: "Rubik", sans-serif;
+    margin: 10px;
+}
 
+.current{
+    font-size: 40px;
+    margin-top: 0px;
+    color: white;
+}
+
+.prev{
+    color:#67676e;
+}
+
+.clear{
+    color: white;
+    display: flex;
+    width: 215px;
+    margin-left: 10px;
+    align-self: flex-end;
+}
+#cleared{
+    background-color: #313135;;
+}
+#cleared:hover{
+    background-color: #3E3E42;
+}
+#cleared:active{
+    background-color: #313135;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
