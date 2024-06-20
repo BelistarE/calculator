@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    width: 600px;
+    background-color: rgb(75, 75, 75);
+    border: 10px solid black;
+}
+
+.leftElements{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%; /* Ensure it also fills vertically */
+    width: 100%; /* Ensure it also fills horizontally */
+}
+.display{
+    height: 30%;
+}
+.numPad {
+    display: flex;
+    flex-direction: column;
+    height: 600px; /* Adjust as needed */
+    width: auto; /* Adjust as needed */ 
+    margin: 10px;
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    justify-content:space-around; /* Optional: Adjust spacing between buttons */
+}
+
+button {
+    flex: 1;
+    margin: 5px; /* Optional: Adjust margin between buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue; /* Added for better visibility */
+    border: 1px solid #ccc; /* Optional: Add border for better visibility */
+    font-size: 24px; /* Optional: Adjust button font size */
+    width: auto;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.history{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+
+}
+
+h1, h3{
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+}
+
+
