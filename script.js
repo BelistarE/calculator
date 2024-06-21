@@ -1,7 +1,9 @@
 //buttons
-const addition = document.querySelector('add');
+const addition = document.querySelector('.add');
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.function');
+const enterBtn = document.querySelector('.equals')
 
-const numbers = document.querySelectorAll('number');
 
 let firstNumber = "";
 let operator = "";
@@ -11,10 +13,11 @@ let prevNum = "";
 let store = "";
 
 
+
 //main logic
 //when clicking a number
-numbers.forEach(number => {
-  number.addEventListener('click', handleNumberClick);
+numbers.forEach(numbers => {
+  numbers.addEventListener('click', handleNumberClick);
 });
 
 function handleNumberClick(event) {
@@ -29,20 +32,55 @@ function handleNumberClick(event) {
     secondNumber += clickedNumber;
     displayNum = secondNumber;
   }
+  updateDisplay(displayNum);
+  console.log(clickedNumber);
+}
+//TODO when clicking an operator
+operators.forEach(operator => {  // Renamed 'operators' to 'operator' for clarity
+  operator.addEventListener('click', handleOperatorClick);
+});
+
+function handleOperatorClick(event){
+  const clickedOperator = event.target; // Get the clicked element directly
+  const operatorID = clickedOperator.getAttribute('id'); // Use getAttribute on the clicked element
+
+  let operator = ""; // Initialize operator variable
+
+  if (operator === "") {
+    if (operatorID === "add") { // Use === for comparison
+      operator = "add";
+    } else if (operatorID === "subtract") {
+      operator = "subtract";
+    } else if (operatorID === "multiply") {
+      operator = "multiply";
+    } else if (operatorID === "divide") {
+      operator = "divide";
+    } 
+    console.log(operator);
+  }
 }
 
-//TODO when clicking an operator
-
 //TODO when clicking enter
+enterBtn.addEventListener('click', function() {
+  // Perform your calculator logic here
+  console.log("Equals button was clicked!");
 
+  // Example: Perform calculation using firstNumber, operator, and secondNumber
+  const result = operate(operator, firstNumber, secondNumber);
+
+  // Example: Update display with result
+  updateDisplay(result);
+
+  console.log(result);
+});
 //TODO when clikcing c
 
 //TODO when clicking CD
 
 //update display
 function updateDisplay(value) {
-  const display = document.querySelector('.display'); // Adjust selector to match your HTML
-  display.textContent = value;
+  const current = document.querySelector('.current'); // Adjust selector to match your HTML
+  current.textContent = value;
 }
 
 
