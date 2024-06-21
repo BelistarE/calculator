@@ -2,8 +2,8 @@
 const addition = document.querySelector('.add');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.function');
-const enterBtn = document.querySelector('.equals')
-
+const enterBtn = document.querySelector('.equals');
+const cButton = document.querySelector('.c');
 
 let firstNumber = "";
 let operator = "";
@@ -36,18 +36,18 @@ function handleNumberClick(event) {
   console.log(clickedNumber);
 }
 //TODO when clicking an operator
-operators.forEach(operator => {  // Renamed 'operators' to 'operator' for clarity
+operators.forEach(operator => {  
   operator.addEventListener('click', handleOperatorClick);
 });
 
 function handleOperatorClick(event){
-  const clickedOperator = event.target; // Get the clicked element directly
-  const operatorID = clickedOperator.getAttribute('id'); // Use getAttribute on the clicked element
+  const clickedOperator = event.target; 
+  const operatorID = clickedOperator.getAttribute('id'); 
 
-  let operator = ""; // Initialize operator variable
+  let operator = ""; 
 
   if (operator === "") {
-    if (operatorID === "add") { // Use === for comparison
+    if (operatorID === "add") { 
       operator = "add";
     } else if (operatorID === "subtract") {
       operator = "subtract";
@@ -62,18 +62,23 @@ function handleOperatorClick(event){
 
 //TODO when clicking enter
 enterBtn.addEventListener('click', function() {
-  // Perform your calculator logic here
   console.log("Equals button was clicked!");
-
-  // Example: Perform calculation using firstNumber, operator, and secondNumber
-  const result = operate(operator, firstNumber, secondNumber);
-
-  // Example: Update display with result
+  console.log(firstNumber);
+  const result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+  console.log(firstNumber)
   updateDisplay(result);
 
   console.log(result);
 });
 //TODO when clikcing c
+cButton.addEventListener('click', handleClear);
+function handleClear(){
+  firstNumber = "";
+  operator = "";
+  secondNumber = "";
+  displayNum = "";
+  updateDisplay('0');
+}
 
 //TODO when clicking CD
 
@@ -84,18 +89,7 @@ function updateDisplay(value) {
 }
 
 
-//operators
-function add(a , b){
-  return a+b;
-}
 
-function subtract(a, b){
-  return a-b;
-}
-
-function multiply(a, b){
-  return a*b;
-}
 
 function divide(a, b){
   if (b === 0){
@@ -109,17 +103,15 @@ function divide(a, b){
 function operate(operator, a, b){
   switch (operator){
     case 'add':
-      add(a. b);
-      break;
+      return a+b;
     case 'subtract':
-      subtract(a,b);
-      break;
+      return a-b;
     case 'multiply':
-      multiply(a,b);
-      break;
+      return a*b;
     case 'divide':
-      divide(a,b);
-      break;
+      return divide(a,b);
+    default:
+      return "error";
   }
 }
 

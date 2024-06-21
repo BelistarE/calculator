@@ -77,20 +77,20 @@ button {
     border: 0;
 }
 
-#number:hover {
+.number:hover {
     background-color: #313135; /* Corrected hover background color */
 }
-#number:active{
+.number:active{
     background-color: #242424;
 }
 
-#function:hover{
+.function:hover{
     background-color: #3E3E42;
 }
-#function:active{
+.function:active{
     background-color: #313135;
 }
-.multiply, .divide, .add, .subtract, .dot{
+.function{
     background-color: #313135;
     font-size: 30px;
 }
