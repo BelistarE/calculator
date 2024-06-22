@@ -4,12 +4,14 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.function');
 const enterBtn = document.querySelector('.equals');
 const cButton = document.querySelector('.c');
+const ceButton = document.querySelector('.ce');
+let current = document.querySelector('.current'); 
 
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 let displayNum = "";
-let prevNum = "";
+let prevNum = ""; //on top of result
 let store = "";
 
 
@@ -21,19 +23,22 @@ numbers.forEach(numbers => {
 });
 
 function handleNumberClick(event) {
-  const clickedNumber = event.target.textContent;
+  let clickedNumber = event.target.textContent;
 
   if (operator === "") {
     // If no operator is selected, append to the first number
     firstNumber += clickedNumber;
     displayNum = firstNumber;
+    updateDisplay(displayNum);
   } else {
     // If an operator is selected, append to the second number
     secondNumber += clickedNumber;
     displayNum = secondNumber;
+    current.textContent += secondNumber;
   }
-  updateDisplay(displayNum);
+
   console.log(clickedNumber);
+  clickedNumber = '';
 }
 //TODO when clicking an operator
 operators.forEach(operator => {  
@@ -44,31 +49,35 @@ function handleOperatorClick(event){
   const clickedOperator = event.target; 
   const operatorID = clickedOperator.getAttribute('id'); 
 
-  let operator = ""; 
 
   if (operator === "") {
     if (operatorID === "add") { 
       operator = "add";
+      current.textContent += " + ";
     } else if (operatorID === "subtract") {
       operator = "subtract";
+      current.textContent += " - ";
     } else if (operatorID === "multiply") {
       operator = "multiply";
+      current.textContent += " x ";
     } else if (operatorID === "divide") {
       operator = "divide";
+      current.textContent += " / ";
     } 
     console.log(operator);
   }
+
 }
 
 //TODO when clicking enter
 enterBtn.addEventListener('click', function() {
   console.log("Equals button was clicked!");
-  console.log(firstNumber);
   const result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
-  console.log(firstNumber)
   updateDisplay(result);
-
+  operator = "";
+  firstNumber = result;
   console.log(result);
+  firstNumber = result;
 });
 //TODO when clikcing c
 cButton.addEventListener('click', handleClear);
@@ -80,11 +89,17 @@ function handleClear(){
   updateDisplay('0');
 }
 
-//TODO when clicking CD
-
+//TODO when clicking CE
+ceButton.addEventListener('click', handleCE);
+function handleCE(){
+  firstNumber = "";
+  operator = "";
+  secondNumber = "";
+  displayNum = "";
+  updateDisplay('0');
+}
 //update display
 function updateDisplay(value) {
-  const current = document.querySelector('.current'); // Adjust selector to match your HTML
   current.textContent = value;
 }
 
