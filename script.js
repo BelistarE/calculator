@@ -27,14 +27,15 @@ function handleNumberClick(event) {
   clickedNumber = event.target.textContent;
 
   if (operator === "") { // If no operator is selected, append to the first number
-    if(firstNumber = "0"){
+    if(firstNumber === "0"){
       firstNumber = "";
     }
     
     firstNumber += clickedNumber;
-    displayNum += firstNumber;
+    displayNum += clickedNumber;
     prevNum += firstNumber;
-    updateDisplay(displayNum);
+    updateDisplay(firstNumber);
+    console.log(`total firstNum: ${firstNumber}`)
     
   } else {
     // If an operator is selected, append to the second number
