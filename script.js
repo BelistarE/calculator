@@ -15,6 +15,7 @@ let displayNum = "";
 let prevNum = ""; //on top of result
 let store = "";
 let clickedNumber = "";
+let tally = 0;
 
 updateDisplay(firstNumber);
 //main logic
@@ -28,7 +29,7 @@ function handleNumberClick(event) {
 
   if (operator === "") { // If no operator is selected, append to the first number
     console.log(`firstNUM = ${firstNumber}`);
-    if (firstNumber.length > 0) {
+    if (firstNumber.length > 0 && tally === 0) {
       firstNumber = "";
       displayNum = "";
       prevNum = "";
@@ -39,6 +40,7 @@ function handleNumberClick(event) {
     prevNum += firstNumber;
     updateDisplay(firstNumber);
     console.log(`total firstNum: ${firstNumber}`)
+    tally++;
     
   } else {
     // If an operator is selected, append to the second number
@@ -91,6 +93,7 @@ function handleOperatorClick(event){
 enterBtn.addEventListener('click', function() {
   console.log("Equals button was clicked!");
   let result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+  result = limitDecimals(result, 5);
   result = result.toString();
   prev.textContent = '';
   prev.textContent = `${current.textContent} = ${result}`;
@@ -100,6 +103,7 @@ enterBtn.addEventListener('click', function() {
   operator = "";
   firstNumber = result;
   secondNumber = '';
+  tally = 0;
   console.log(result);
 
 });
@@ -136,8 +140,13 @@ function updatePrevDisplay(value){
 function addToHistory(value){
   const prevCalcs = document.querySelector('.prevCalcs');
   const defaultValue = document.getElementById('defaultValue');
+  const pElements = prevCalcs.getElementsByTagName('p');
   if (defaultValue) {
     prevCalcs.removeChild(defaultValue);
+}
+  if (pElements.length >= 14) {
+  // Remove the oldest <p> element (last child)
+  prevCalcs.removeChild(prevCalcs.lastChild);
 }
   const p = document.createElement('p');
   p.textContent = value;
@@ -173,6 +182,11 @@ function operate(operator, a, b){
     default:
       return "error";
   }
+}
+
+function limitDecimals(number, decimalPlaces) {
+  const factor = Math.pow(10, decimalPlaces);
+  return Math.round(number * factor) / factor;
 }
 
 
