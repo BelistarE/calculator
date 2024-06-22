@@ -27,8 +27,11 @@ function handleNumberClick(event) {
   clickedNumber = event.target.textContent;
 
   if (operator === "") { // If no operator is selected, append to the first number
-    if(firstNumber === "0"){
+    console.log(`firstNUM = ${firstNumber}`);
+    if (firstNumber.length > 0) {
       firstNumber = "";
+      displayNum = "";
+      prevNum = "";
     }
     
     firstNumber += clickedNumber;
@@ -40,7 +43,7 @@ function handleNumberClick(event) {
   } else {
     // If an operator is selected, append to the second number
     secondNumber += clickedNumber;
-    displayNum += secondNumber;
+    displayNum += clickedNumber;
     updateDisplay(displayNum);
     prevNum += secondNumber;
   }
@@ -87,7 +90,8 @@ function handleOperatorClick(event){
 //TODO when clicking enter
 enterBtn.addEventListener('click', function() {
   console.log("Equals button was clicked!");
-  const result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+  let result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+  result = result.toString();
   prev.textContent = '';
   prev.textContent = `${current.textContent} = ${result}`;
   addToHistory(`${current.textContent} = ${result}`);
