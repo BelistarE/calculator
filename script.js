@@ -5,7 +5,6 @@ const operators = document.querySelectorAll('.function');
 const enterBtn = document.querySelector('.equals');
 const cButton = document.querySelector('.c');
 const ceButton = document.querySelector('.ce');
-let prevCalcs = document.querySelector('.prevCalcs');
 let current = document.querySelector('.current'); 
 let prev = document.querySelector('.prev');
 
@@ -28,16 +27,16 @@ function handleNumberClick(event) {
   clickedNumber = event.target.textContent;
 
   if (operator === "") { // If no operator is selected, append to the first number
-    firstNumber = "";
+    if(firstNumber = "0"){
+      firstNumber = "";
+    }
     
     firstNumber += clickedNumber;
-    displayNum = firstNumber;
+    displayNum += firstNumber;
     prevNum += firstNumber;
     updateDisplay(displayNum);
     
   } else {
-    //if first num is default 0
-
     // If an operator is selected, append to the second number
     secondNumber += clickedNumber;
     displayNum += secondNumber;
@@ -88,8 +87,11 @@ function handleOperatorClick(event){
 enterBtn.addEventListener('click', function() {
   console.log("Equals button was clicked!");
   const result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
+  prev.textContent = '';
+  prev.textContent = `${current.textContent} = ${result}`;
+  addToHistory(`${current.textContent} = ${result}`);
   updateDisplay(result);
-  prev.textContent = `${prevNum} = ${result}`;
+  displayNum = result;
   operator = "";
   firstNumber = result;
   secondNumber = '';
@@ -126,6 +128,22 @@ function updatePrevDisplay(value){
   prev.textContent = value;
 }
 
+function addToHistory(value){
+  const prevCalcs = document.querySelector('.prevCalcs');
+  const defaultValue = document.getElementById('defaultValue');
+  if (defaultValue) {
+    prevCalcs.removeChild(defaultValue);
+}
+  const p = document.createElement('p');
+  p.textContent = value;
+
+  if (prevCalcs.firstChild) {
+    prevCalcs.insertBefore(p, prevCalcs.firstChild);
+} else {
+    prevCalcs.appendChild(p);
+}
+
+}
 
 
 function divide(a, b){
