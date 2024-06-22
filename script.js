@@ -5,17 +5,19 @@ const operators = document.querySelectorAll('.function');
 const enterBtn = document.querySelector('.equals');
 const cButton = document.querySelector('.c');
 const ceButton = document.querySelector('.ce');
+let prevCalcs = document.querySelector('.prevCalcs');
 let current = document.querySelector('.current'); 
+let prev = document.querySelector('.prev');
 
-let firstNumber = "";
+let firstNumber = "0";
 let operator = "";
 let secondNumber = "";
 let displayNum = "";
 let prevNum = ""; //on top of result
 let store = "";
+let clickedNumber = "";
 
-
-
+updateDisplay(firstNumber);
 //main logic
 //when clicking a number
 numbers.forEach(numbers => {
@@ -23,18 +25,24 @@ numbers.forEach(numbers => {
 });
 
 function handleNumberClick(event) {
-  let clickedNumber = event.target.textContent;
+  clickedNumber = event.target.textContent;
 
-  if (operator === "") {
-    // If no operator is selected, append to the first number
+  if (operator === "") { // If no operator is selected, append to the first number
+    firstNumber = "";
+    
     firstNumber += clickedNumber;
     displayNum = firstNumber;
+    prevNum += firstNumber;
     updateDisplay(displayNum);
+    
   } else {
+    //if first num is default 0
+
     // If an operator is selected, append to the second number
     secondNumber += clickedNumber;
-    displayNum = secondNumber;
-    current.textContent += secondNumber;
+    displayNum += secondNumber;
+    updateDisplay(displayNum);
+    prevNum += secondNumber;
   }
 
   console.log(clickedNumber);
@@ -53,18 +61,25 @@ function handleOperatorClick(event){
   if (operator === "") {
     if (operatorID === "add") { 
       operator = "add";
-      current.textContent += " + ";
+      displayNum += " + ";
+      prevNum += " + ";
     } else if (operatorID === "subtract") {
       operator = "subtract";
-      current.textContent += " - ";
+      displayNum += " - ";
+      prevNum += " - ";
     } else if (operatorID === "multiply") {
       operator = "multiply";
-      current.textContent += " x ";
+      displayNum += " x ";
+      prevNum += " x ";
     } else if (operatorID === "divide") {
       operator = "divide";
       current.textContent += " / ";
+      displayNum += " / ";
     } 
     console.log(operator);
+    updateDisplay(displayNum);
+  }else {
+    alert("This calculator only supports one operation at a time. Please enter and perform your second operation :3");
   }
 
 }
@@ -74,10 +89,12 @@ enterBtn.addEventListener('click', function() {
   console.log("Equals button was clicked!");
   const result = operate(operator, parseFloat(firstNumber), parseFloat(secondNumber));
   updateDisplay(result);
+  prev.textContent = `${prevNum} = ${result}`;
   operator = "";
   firstNumber = result;
+  secondNumber = '';
   console.log(result);
-  firstNumber = result;
+
 });
 //TODO when clikcing c
 cButton.addEventListener('click', handleClear);
@@ -96,6 +113,8 @@ function handleCE(){
   operator = "";
   secondNumber = "";
   displayNum = "";
+  prevNum = "";
+  prev.textContent = '';
   updateDisplay('0');
 }
 //update display
@@ -103,6 +122,9 @@ function updateDisplay(value) {
   current.textContent = value;
 }
 
+function updatePrevDisplay(value){
+  prev.textContent = value;
+}
 
 
 
@@ -129,4 +151,5 @@ function operate(operator, a, b){
       return "error";
   }
 }
+
 
