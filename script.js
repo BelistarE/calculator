@@ -1,3 +1,8 @@
+/*If you are using this code to help with your own calculator project,
+DO NOT. It is very convoluted because my friend kept stress testing it
+by being a goober and making absurdly long calculations over and over. 
+Your project should not need this much code.*/
+
 //buttons
 const addition = document.querySelector('.add');
 const numbers = document.querySelectorAll('.number');
@@ -7,6 +12,7 @@ const cButton = document.querySelector('.c');
 const ceButton = document.querySelector('.ce');
 let current = document.querySelector('.current'); 
 let prev = document.querySelector('.prev');
+const dot = document.getElementById('dot');
 
 let firstNumber = "0";
 let operator = "";
@@ -26,6 +32,9 @@ numbers.forEach(numbers => {
 
 function handleNumberClick(event) {
   clickedNumber = event.target.textContent;
+  if(operator !== "" && displayNum.length >= 17){
+    alert("maximum length reached")
+  } else {
 
   if (operator === "") { // If no operator is selected, append to the first number
     console.log(`firstNUM = ${firstNumber}`);
@@ -34,20 +43,29 @@ function handleNumberClick(event) {
       displayNum = "";
       prevNum = "";
     }
-    
+    if(firstNumber.length >= 7){
+      alert("this calculator only supports integers of a maximum of 7 digits. Sorry!")
+      clickedNumber = "0";
+    }else{
     firstNumber += clickedNumber;
     displayNum += clickedNumber;
     prevNum += firstNumber;
     updateDisplay(firstNumber);
     console.log(`total firstNum: ${firstNumber}`)
     tally++;
-    
+    }
   } else {
     // If an operator is selected, append to the second number
+    if(secondNumber.length >= 7){
+      alert("this calculator only supports integers of a maximum of 7 digits. Sorry!")
+      clickedNumber = "0";
+    }else{
     secondNumber += clickedNumber;
     displayNum += clickedNumber;
     updateDisplay(displayNum);
     prevNum += secondNumber;
+    }
+  }
   }
 
   console.log(clickedNumber);
