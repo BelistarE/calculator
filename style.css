@@ -93,6 +93,16 @@ button {
     background-color: #313135;
     font-size: 30px;
 }
+#dot:hover{
+    background-color: #3E3E42;
+}
+#dot:active{
+    background-color: #313135;
+}
+#dot{
+    background-color: #313135;
+    font-size: 30px;
+}
 .equals{
     background-color: #c3ddbb;
     color: #1E1E1E;

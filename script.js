@@ -22,6 +22,7 @@ let prevNum = ""; //on top of result
 let store = "";
 let clickedNumber = "";
 let tally = 0;
+let numDots = 0;
 
 updateDisplay(firstNumber);
 //main logic
@@ -122,6 +123,7 @@ enterBtn.addEventListener('click', function() {
   firstNumber = result;
   secondNumber = '';
   tally = 0;
+  numDots = 0;
   console.log(result);
 
 });
@@ -219,4 +221,25 @@ function limitDecimals(number, decimalPlaces) {
   return Math.round(number * factor) / factor;
 }
 
+//extra credit: adding a dot
 
+dot.addEventListener('click', handleDot);
+
+function handleDot(){
+  console.log(".");
+  const decimal = ".";
+  if(numDots === 0){ //make sure only 1 decimal
+  if (operator === "") { // If no operator is selected, append to the first number
+    firstNumber += decimal;
+    displayNum += decimal;
+    prevNum += decimal;
+    updateDisplay(firstNumber);
+  } else {
+  //second number decimal
+  secondNumber += decimal;
+    displayNum += decimal;
+    updateDisplay(displayNum);
+    prevNum += decimal;
+  }
+}
+}
