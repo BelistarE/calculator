@@ -126,6 +126,8 @@ function handleCE(){
   displayNum = "";
   prevNum = "";
   prev.textContent = '';
+  clearHistory();
+
   updateDisplay('0');
 }
 //update display
@@ -157,6 +159,16 @@ function addToHistory(value){
     prevCalcs.appendChild(p);
 }
 
+}
+
+//clear history
+function clearHistory() {
+  const prevCalcs = document.querySelector('.prevCalcs');
+
+  // Remove all child <p> elements
+  while (prevCalcs.firstChild) {
+    prevCalcs.removeChild(prevCalcs.firstChild);
+  }
 }
 
 

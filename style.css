@@ -36,7 +36,7 @@ body, html {
     width: 100%; /* Ensure it also fills horizontally */
 }
 .display{
-    height: 30%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
